@@ -46,6 +46,10 @@ public class SocketServerHandler extends Thread {
         out.writeObject(packet);
     }
 
+    public void stopServer() throws IOException {
+        out.writeObject("stop");
+    }
+
     public void setRunning(final boolean running) {
         this.running = running;
     }

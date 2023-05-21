@@ -1,5 +1,6 @@
 package net.bukkitlabs.bukkitlabscloudapi.socket.client;
 
+import net.bukkitlabs.bukkitlabscloudapi.internal.event.Packet;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,6 +26,14 @@ public class PacketCommunicationClient {
 
     public void stop() {
         if (handler != null) handler.setRunning(false);
+    }
+
+    public void sendPacket(@NotNull Packet packet) throws IOException {
+        if (handler != null) handler.sendPacket(packet);
+    }
+
+    public void stopServer() {
+        if (handler != null) handler.stopServer();
     }
 
     @NotNull

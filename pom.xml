@@ -12,6 +12,7 @@
     <modules>
         <module>InternalAPI</module>
         <module>NettyAPI</module>
+        <module>SocketAPI</module>
     </modules>
 
     <properties>

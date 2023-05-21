@@ -1,4 +1,4 @@
-package net.bukkitlabs.bukkitlabscloudapi.netty.packet;
+package net.bukkitlabs.bukkitlabscloudapi.socket.packet;
 
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Cancelable;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Packet;
@@ -8,7 +8,7 @@ import java.net.InetSocketAddress;
 
 public class ServerUnregisterPacket extends Packet implements Cancelable {
 
-    private boolean canceled;
+    private boolean canceled = false;
 
     private final String name;
     private final InetSocketAddress address;

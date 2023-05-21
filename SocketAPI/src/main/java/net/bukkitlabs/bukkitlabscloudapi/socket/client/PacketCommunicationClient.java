@@ -22,6 +22,7 @@ public class PacketCommunicationClient {
 
     public void start() {
         handler = new SocketServerHandler(this.socket, this);
+        handler.start();
     }
 
     public void stop() {

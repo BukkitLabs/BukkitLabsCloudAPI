@@ -1,7 +1,10 @@
 package net.bukkitlabs.bukkitlabscloudapi.socket.server;
 
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Packet;
+import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketCannotBeProcessedException;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketHandler;
+import net.bukkitlabs.bukkitlabscloudapi.socket.client.SocketServerHandler;
+import net.bukkitlabs.bukkitlabscloudapi.socket.event.ClientConnectEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -27,7 +30,14 @@ public class PacketCommunicationServer {
     public void start() throws IOException {
         while (running) {
             final Socket socket = serverSocket.accept();
-            new SocketClientHandler(socket, this).start();
+            final SocketClientHandler client = new SocketClientHandler(socket, this);
+            clients.add(client);
+            client.start();
+            try {
+                this.packetHandler.call(new ClientConnectEvent(socket.getInetAddress()));
+            } catch (PacketCannotBeProcessedException exception) {
+                exception.printStackTrace();
+            }
         }
     }
 

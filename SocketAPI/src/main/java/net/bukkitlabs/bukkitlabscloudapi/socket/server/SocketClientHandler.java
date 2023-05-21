@@ -2,6 +2,7 @@ package net.bukkitlabs.bukkitlabscloudapi.socket.server;
 
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Packet;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketCannotBeProcessedException;
+import net.bukkitlabs.bukkitlabscloudapi.socket.event.PacketSendEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -42,6 +43,11 @@ public class SocketClientHandler extends Thread {
 
     public void sendPacket(@NotNull Packet packet) throws IOException {
         out.writeObject(packet);
+        try {
+            server.getPacketHandler().call(new PacketSendEvent(socket.getInetAddress()));
+        } catch (PacketCannotBeProcessedException exception) {
+            exception.printStackTrace();
+        }
     }
 
     public void setRunning(final boolean running) {

@@ -22,6 +22,7 @@
             <groupId>net.bukkitlabs.bukkitlabscloud</groupId>
             <artifactId>InternalAPI</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

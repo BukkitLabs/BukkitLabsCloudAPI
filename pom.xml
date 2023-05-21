@@ -11,6 +11,7 @@
 
     <modules>
         <module>InternalAPI</module>
+        <module>NettyAPI</module>
     </modules>
 
     <properties>

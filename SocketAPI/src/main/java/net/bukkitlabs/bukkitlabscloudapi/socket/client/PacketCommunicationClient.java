@@ -32,7 +32,7 @@ public class PacketCommunicationClient {
         if (handler != null) handler.sendPacket(packet);
     }
 
-    public void stopServer() {
+    public void stopServer() throws IOException {
         if (handler != null) handler.stopServer();
     }
 

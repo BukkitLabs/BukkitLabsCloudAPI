@@ -36,7 +36,7 @@ public class CommandHandler {
 
     public void startListening() {
         while (true) {
-            final String input = reader.readLine();
+            final String input = reader.readLine("> ");
             if (input.equalsIgnoreCase("exit")) {
                 System.exit(0);
                 return;

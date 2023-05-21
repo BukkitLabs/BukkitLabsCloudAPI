@@ -2,7 +2,9 @@ package net.bukkitlabs.bukkitlabscloudapi.internal.event;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Packet {
+import java.io.Serializable;
+
+public abstract class Packet implements Serializable {
 
     private final boolean async;
     private String name;

@@ -3,7 +3,6 @@ package net.bukkitlabs.bukkitlabscloudapi.socket.server;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.Packet;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketCannotBeProcessedException;
 import net.bukkitlabs.bukkitlabscloudapi.internal.event.PacketHandler;
-import net.bukkitlabs.bukkitlabscloudapi.socket.client.SocketServerHandler;
 import net.bukkitlabs.bukkitlabscloudapi.socket.event.ClientConnectEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,9 +40,10 @@ public class PacketCommunicationServer {
         }
     }
 
-    public void stop() {
+    public void stop() throws IOException {
         this.running = false;
         for (SocketClientHandler client : this.clients) client.setRunning(false);
+        this.serverSocket.close();
     }
 
     public void broadcast(@NotNull Packet packet) throws IOException {
